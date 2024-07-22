@@ -20,3 +20,15 @@ after_success:
   - docker push noamros9/multi-container-project-nginx
   - docker push noamros9/multi-container-project-server
   - docker push noamros9/multi-container-project-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'multi-docker'
+  env: 'Multi-docker-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-905418113785'
+  bucket_path: 'docker-multi'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
